@@ -12,7 +12,7 @@ RUN composer update --ignore-platform-reqs --optimize-autoloader \
     --no-plugins --no-scripts --prefer-dist \
     `if [ "$TESTING" != "true" ]; then echo "--no-dev"; fi`
 
-FROM php:8.0-cli-alpine as compile
+FROM php:8.3.0alpha1-cli-alpine as compile
 
 ARG DEBUG=false
 ENV DEBUG=$DEBUG
@@ -100,7 +100,7 @@ RUN \
   ./configure && \
   make && make install
 
-FROM php:8.0-cli-alpine as final
+FROM php:8.3.0alpha1-cli-alpine as final
 
 LABEL maintainer="team@appwrite.io"
 
